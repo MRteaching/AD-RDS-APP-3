@@ -269,3 +269,7 @@ java app.Main
 ---
 
 Boa sorte!
+
+---
+
+Ao final da aula com 5 minutos faltantes começaremos a recolher as pastas salvas na area de trabalho com o pendrive, por favor lembre-se de salvar os codigos e deixar a pasta encontravel na area de trabalho.
