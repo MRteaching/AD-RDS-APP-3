@@ -1,8 +1,8 @@
-# Projeto Veículos — Prova de Java POO
+# Projeto Robôs — Prova de Java POO
 
 ## Instruções
 
-Você receberá dois arquivos prontos: `TipoCombustivel.java` e `Veiculo.java`. Não é necessário alterá-los, apenas lê-los com atenção antes de começar — eles mostram exatamente o que a classe base oferece para você trabalhar.
+Você receberá dois arquivos prontos: `TipoEnergia.java` e `Robo.java`. Não é necessário alterá-los, apenas lê-los com atenção antes de começar — eles mostram exatamente o que a classe base oferece para você trabalhar.
 
 Sua tarefa é implementar os três arquivos indicados abaixo, seguindo os comentários deixados em cada um como guia.
 
@@ -32,85 +32,85 @@ Sua tarefa é implementar os três arquivos indicados abaixo, seguindo os coment
 app/
   Main.java              (você implementa)
 enums/
-  TipoCombustivel.java   (fornecido)
-  CategoriaVeiculo.java  (você implementa)
+  TipoEnergia.java       (fornecido)
+  CategoriaRobo.java     (você implementa)
 model/
-  Veiculo.java           (fornecido)
-  Carro.java             (você implementa)
+  Robo.java              (fornecido)
+  RoboAndroide.java      (você implementa)
 ```
 
 ---
 
 ## Arquivos Fornecidos
 
-### `enums/TipoCombustivel.java`
+### `enums/TipoEnergia.java`
 
 ```java
 package enums;
 
-public enum TipoCombustivel {
-    GASOLINA,
-    DIESEL,
+public enum TipoEnergia {
+    SOLAR,
+    BATERIA,
     ELETRICO,
-    ETANOL
+    NUCLEAR
 }
 ```
 
 ---
 
-### `model/Veiculo.java`
+### `model/Robo.java`
 
 ```java
 package model;
 
-import enums.TipoCombustivel;
-import enums.CategoriaVeiculo;
+import enums.TipoEnergia;
+import enums.CategoriaRobo;
 
-public abstract class Veiculo {
+public abstract class Robo {
 
-    private String marca;
+    private String fabricante;
     private String modelo;
     private int ano;
     private int velocidadeMaxima;
-    private TipoCombustivel tipoCombustivel;
-    private CategoriaVeiculo categoria;
+    private TipoEnergia tipoEnergia;
+    private CategoriaRobo categoria;
 
-    public Veiculo(String marca, String modelo, int ano,
-                   int velocidadeMaxima, TipoCombustivel tipoCombustivel,
-                   CategoriaVeiculo categoria) {
-        this.marca = marca;
+    public Robo(String fabricante, String modelo, int ano,
+                int velocidadeMaxima, TipoEnergia tipoEnergia,
+                CategoriaRobo categoria) {
+        this.fabricante = fabricante;
         this.modelo = modelo;
         this.ano = ano;
         this.velocidadeMaxima = velocidadeMaxima;
-        this.tipoCombustivel = tipoCombustivel;
+        this.tipoEnergia = tipoEnergia;
         this.categoria = categoria;
     }
 
-    public abstract void ligarMotor();
+    public abstract void iniciar();
 
-    public void buzinar() {
-        System.out.println(marca + " " + modelo + " buzina: Beep!");
+    public void emitirSom() {
+        System.out.println(fabricante + " " + modelo + " emite: Bip!");
     }
 
-    public void acelerar(int velocidade) {
-        System.out.println(marca + " " + modelo + " acelera para " + velocidade + " km/h");
+    public void mover(int velocidade) {
+        System.out.println(fabricante + " " + modelo + " se move a " + velocidade + " km/h");
     }
 
     public void exibirInfo() {
-        System.out.println("Marca: " + marca);
+        System.out.println("Fabricante: " + fabricante);
         System.out.println("Modelo: " + modelo);
         System.out.println("Ano: " + ano);
         System.out.println("Velocidade máxima: " + velocidadeMaxima + " km/h");
-        System.out.println("Combustível: " + tipoCombustivel.name());
+        System.out.println("Energia: " + tipoEnergia.name());
         System.out.println("Categoria: " + categoria.getNomeExibicao());
     }
 
-    public String getMarca() { return marca; }
+    public String getFabricante() { return fabricante; }
     public String getModelo() { return modelo; }
     public int getAno() { return ano; }
     public int getVelocidadeMaxima() { return velocidadeMaxima; }
-    public TipoCombustivel getTipoCombustivel() { return tipoCombustivel; }
-    public CategoriaVeiculo getCategoria() { return categoria; }
+    public TipoEnergia getTipoEnergia() { return tipoEnergia; }
+    public CategoriaRobo getCategoria() { return categoria; }
 }
 ```
 
@@ -118,27 +118,27 @@ public abstract class Veiculo {
 
 ## Arquivos para Implementar
 
-### `enums/CategoriaVeiculo.java`
+### `enums/CategoriaRobo.java`
 
-Este enum segue a mesma ideia do `TipoCombustivel`, mas com um pouco mais de estrutura: cada constante carrega um código numérico e um nome para exibição.
+Este enum segue a mesma ideia do `TipoEnergia`, mas com um pouco mais de estrutura: cada constante carrega um código numérico e um nome para exibição.
 
 ```java
 package enums;
 
-public enum CategoriaVeiculo {
+public enum CategoriaRobo {
 
     /*
      * Defina as seguintes constantes, cada uma com um codigo (int) e um nomeExibicao (String):
      *
-     *   PASSEIO     → codigo 1, exibicao "Passeio"
-     *   ESPORTIVO   → codigo 2, exibicao "Esportivo"
-     *   UTILITARIO  → codigo 3, exibicao "Utilitário"
+     *   INDUSTRIAL  → codigo 1, exibicao "Industrial"
+     *   DOMESTICO   → codigo 2, exibicao "Doméstico"
+     *   MILITAR     → codigo 3, exibicao "Militar"
      */
 
     // private final int codigo
     // private final String nomeExibicao
 
-    // Construtor CategoriaVeiculo(int codigo, String nomeExibicao)
+    // Construtor CategoriaRobo(int codigo, String nomeExibicao)
 
     // getNomeExibicao()
 
@@ -147,42 +147,42 @@ public enum CategoriaVeiculo {
 
 ---
 
-### `model/Carro.java`
+### `model/RoboAndroide.java`
 
-A classe `Carro` estende `Veiculo`. Boa parte do comportamento já vem pronta da classe pai — sua tarefa é especializar onde necessário e acrescentar o que é específico de um carro.
+A classe `RoboAndroide` estende `Robo`. Boa parte do comportamento já vem pronta da classe pai — sua tarefa é especializar onde necessário e acrescentar o que é específico de um robô androide.
 
 ```java
 package model;
 
-import enums.TipoCombustivel;
-import enums.CategoriaVeiculo;
+import enums.TipoEnergia;
+import enums.CategoriaRobo;
 
-public class Carro extends Veiculo {
+public class RoboAndroide extends Robo {
 
     // Atributos adicionais:
-    //   int numeroDePortas
-    //   String tipoTransmissao   ("Manual" ou "Automatico")
+    //   int numeroBracos
+    //   String tipoProcessador   (ex: "ARM" ou "x86")
 
     // Construtor:
-    //   Chame super() com todos os atributos de Veiculo.
-    //   Em seguida, inicialize os atributos específicos do Carro.
+    //   Chame super() com todos os atributos de Robo.
+    //   Em seguida, inicialize os atributos específicos do RoboAndroide.
 
-    // SOBRESCRITA: ligarMotor()
-    //   Imprimir: "[marca] [modelo] motor liga: Vrum!"
+    // SOBRESCRITA: iniciar()
+    //   Imprimir: "[fabricante] [modelo] inicializa: Beep boop!"
 
-    // SOBRESCRITA: buzinar()
-    //   Imprimir: "[marca] [modelo] buzina: Bi bi!"
+    // SOBRESCRITA: emitirSom()
+    //   Imprimir: "[fabricante] [modelo] emite: Zzt zzt!"
 
-    // Herdado sem alteração: acelerar(int velocidade)
+    // Herdado sem alteração: mover(int velocidade)
 
-    // SOBRECARGA: acelerar(int velocidade, String marcha)
-    //   Imprimir: "[marca] [modelo] acelera para [velocidade] km/h na marcha [marcha]"
+    // SOBRECARGA: mover(int velocidade, String direcao)
+    //   Imprimir: "[fabricante] [modelo] se move a [velocidade] km/h em direção a [direcao]"
 
     // SOBRESCRITA: exibirInfo()
     //   Chame super.exibirInfo() para aproveitar o que já existe,
-    //   depois imprima os campos específicos do Carro.
+    //   depois imprima os campos específicos do RoboAndroide.
 
-    // Getters para os atributos específicos do Carro.
+    // Getters para os atributos específicos do RoboAndroide.
 
 }
 ```
@@ -191,7 +191,7 @@ public class Carro extends Veiculo {
 
 ### `app/Main.java`
 
-No Main, o objetivo é demonstrar na prática o que foi implementado. Instancie dois carros com características diferentes, exercite os métodos e compare o comportamento entre eles.
+No Main, o objetivo é demonstrar na prática o que foi implementado. Instancie dois robôs com características diferentes, exercite os métodos e compare o comportamento entre eles.
 
 ```java
 package app;
@@ -200,13 +200,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // 1. Crie um objeto Carro com valores à sua escolha.
+        // 1. Crie um objeto RoboAndroide com valores à sua escolha.
 
-        // 2. Chame os métodos: ligarMotor(), buzinar(),
-        //    acelerar(int), acelerar(int, String), exibirInfo()
+        // 2. Chame os métodos: iniciar(), emitirSom(),
+        //    mover(int), mover(int, String), exibirInfo()
 
-        // 3. Crie um segundo Carro com valores diferentes do primeiro
-        //    (marca, modelo, transmissão e número de portas diferentes).
+        // 3. Crie um segundo RoboAndroide com valores diferentes do primeiro
+        //    (fabricante, modelo, processador e número de braços diferentes).
         //    Chame exibirInfo() nos dois e depois compare a velocidade máxima
         //    de cada um usando getVelocidadeMaxima(), imprimindo qual dos dois é mais rápido.
 
@@ -220,41 +220,41 @@ public class Main {
 ## Saída Esperada no Console
 
 ```text
-Toyota Corolla motor liga: Vrum!
-Toyota Corolla buzina: Bi bi!
-Toyota Corolla acelera para 80 km/h
-Toyota Corolla acelera para 100 km/h na marcha 3ª
-Marca: Toyota
-Modelo: Corolla
-Ano: 2022
-Velocidade máxima: 180 km/h
-Combustível: GASOLINA
-Categoria: Passeio
-Número de portas: 4
-Transmissão: Automatico
+RoboTech Atlas-1 inicializa: Beep boop!
+RoboTech Atlas-1 emite: Zzt zzt!
+RoboTech Atlas-1 se move a 40 km/h
+RoboTech Atlas-1 se move a 60 km/h em direção a Norte
+Fabricante: RoboTech
+Modelo: Atlas-1
+Ano: 2023
+Velocidade máxima: 80 km/h
+Energia: BATERIA
+Categoria: Industrial
+Número de braços: 2
+Processador: ARM
 ---
-Marca: Honda
-Modelo: Civic
-Ano: 2020
-Velocidade máxima: 210 km/h
-Combustível: ETANOL
-Categoria: Esportivo
-Número de portas: 2
-Transmissão: Manual
+Fabricante: NeoCorp
+Modelo: Nexus-7
+Ano: 2024
+Velocidade máxima: 120 km/h
+Energia: SOLAR
+Categoria: Militar
+Número de braços: 4
+Processador: x86
 ---
-Honda Civic é mais rápido.
+NeoCorp Nexus-7 é mais rápido.
 ```
 
 ## Critérios de Avaliação
 
 | Item | Pontuação |
 | --- | --- |
-| Enum `CategoriaVeiculo` com as 3 constantes, atributos, construtor e `getNomeExibicao()` | 25 |
-| `Carro` estende `Veiculo` com construtor correto usando `super()` | 20 |
-| `Carro` sobrescreve `ligarMotor()` e `buzinar()` corretamente | 20 |
-| `Carro` sobrecarrega `acelerar(int, String)` corretamente | 15 |
-| `Carro` sobrescreve `exibirInfo()` chamando `super.exibirInfo()` | 10 |
-| `Main` instancia dois carros, chama todos os métodos e compara a velocidade máxima entre eles | 10 |
+| Enum `CategoriaRobo` com as 3 constantes, atributos, construtor e `getNomeExibicao()` | 25 |
+| `RoboAndroide` estende `Robo` com construtor correto usando `super()` | 20 |
+| `RoboAndroide` sobrescreve `iniciar()` e `emitirSom()` corretamente | 20 |
+| `RoboAndroide` sobrecarrega `mover(int, String)` corretamente | 15 |
+| `RoboAndroide` sobrescreve `exibirInfo()` chamando `super.exibirInfo()` | 10 |
+| `Main` instancia dois robôs, chama todos os métodos e compara a velocidade máxima entre eles | 10 |
 | **Total** | **100** |
 
 ---
